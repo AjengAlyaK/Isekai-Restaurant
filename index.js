@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('./src/model/user');
 require('./src/utils/db')
 const app = express();
-const port = 3000;
+const port = 52719;
 
 app.get('/user', async (req, res)  =>{
     try {
