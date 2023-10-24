@@ -1,6 +1,9 @@
 const express = require('express');
 const User = require('./src/model/user');
-require('./src/utils/db')
+require('./src/utils/db');
+const cors = require('cors');
+
+app.use(cors());
 const app = express();
 const port = 52719;
 
