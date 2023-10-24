@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/ecommerce', {
+// mongoose.connect('mongodb://127.0.0.1:27017/ecommerce', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
+
+mongoose.connect('mongodb://mongo:H5d23ha+F-DggGaB-feCHAgAH-gBFfFf@viaduct.proxy.rlwy.net:52719', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
