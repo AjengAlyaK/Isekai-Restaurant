@@ -2,11 +2,10 @@ const express = require('express');
 const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
-
-app.use(cors());
 const app = express();
 const port = 52719;
 
+app.use(cors());
 app.get('/user', async (req, res)  =>{
     try {
         const users = await User.find();
