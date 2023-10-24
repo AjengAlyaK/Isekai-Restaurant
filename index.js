@@ -6,6 +6,10 @@ const app = express();
 const port = 52719;
 
 app.use(cors());
+app.get('/', (req, res)=> {
+    res.send('hello');
+})
+
 app.get('/user', async (req, res)  =>{
     try {
         const users = await User.find();
