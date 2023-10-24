@@ -3,7 +3,7 @@ const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
 const app = express();
-const port = 52719;
+const port = 7000;
 
 app.use(cors());
 app.get('/', (req, res)=> {
