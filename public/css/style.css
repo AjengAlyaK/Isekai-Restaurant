@@ -1,0 +1,47 @@
+body{
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.main-color
+{
+    background-color: #592693 !important;
+}
+
+.banner
+{
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../image/banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.banner2
+{
+    height: 55vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../image/banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hovered-card
+{
+    transition: .3s;
+}
+
+.hovered-card:hover
+{
+    transform: scale(1.1);
+}
+
+.icon-service{
+    width: 90px;
+    height: 90px;
+    border: solid #fff 2px;
+    border-radius: 50%;
+    color: #fff;
+    /* font-size: 40px; */
+}
+
+.content-subscribe{
+    background-color: rgba(0, 0, 0, 0.7);
+}
