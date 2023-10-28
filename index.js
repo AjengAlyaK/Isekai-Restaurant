@@ -47,6 +47,13 @@ app.get('/signUp', (req, res)=> {
     });
 });
 
+app.get('/signIn', (req, res)=> {
+    res.render('signIn', {
+        title: 'Kafe Saya | Sign In',
+        layout: 'layouts/entrance',
+    });
+});
+
 app.get('/user', async (req, res)  =>{
     try {
         const users = await User.find();
