@@ -4,15 +4,15 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-7">
-                    <h2 class="mb-5">Sign In</h2>
-                    <form>
+                    <h2 class="mb-5">Wellcome Back !</h2>
+                    <form method="POST" action="/signIn">
                         <div class="form-group mb-3">
                             <label class="mb-2" for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="off">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" autocomplete="off">
                         </div>
                         <div class="form-group mb-3">
                             <label class="mb-2" for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password" autocomplete="off">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" autocomplete="off">
                         </div>
                         <button type="submit" class="btn custom-button mt-3" style="width: 100%;">Sign In</button>
                     </form>

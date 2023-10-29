@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Membuat Schema User
 const User = mongoose.model('User', {
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -15,7 +15,8 @@ const User = mongoose.model('User', {
         required: true
     },
     email: {
-        type: String
+        type: String,
+        required: true
     }
 });
 
