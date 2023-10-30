@@ -3,6 +3,11 @@ const expressLayouts = require('express-ejs-layouts');
 const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
+// controller 
+const { signUp, signIn } = require('./src/controller/user')
+// make session
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const app = express();
 const port = 7000;
 
@@ -11,6 +16,20 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(express.json());
+
+const sessionMiddleware = session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://127.0.0.1:27017/food_order'
+    }),
+    cookie: { maxAge: 60 * 60 * 1000 }
+});
+
+app.use(sessionMiddleware);
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -48,19 +67,7 @@ app.get('/signUp', (req, res) => {
 });
 
 // proses sign up
-app.post('/signUp', (req, res) => {
-    const userData = req.body;
-
-    User.create(userData) // Use create() method for creating a single document
-        .then((user) => {
-            console.log('User created:', user);
-            res.status(201).json(user); // Send a success response with the created user
-        })
-        .catch((error) => {
-            console.error('Error creating user:', error);
-            res.status(500).json({ error: 'Failed to create user' }); // Send an error response
-        });
-});
+app.post('/signUp', signUp);
 
 app.get('/signIn', (req, res) => {
     res.render('signIn', {
@@ -70,22 +77,7 @@ app.get('/signIn', (req, res) => {
 });
 
 // proses sign in
-app.post('/signIn', async (req, res) => {
-    const { email, password } = req.body;
-    // enhance later okay ;)
-    try {
-        const user = await User.findOne({ email, password });
-
-        if (!user) {
-            return res.status(401).json({ error: 'Invalid username or password' });
-        }
-
-        res.status(200).json({ message: 'Login successful' });
-    } catch (err) {
-        console.error('Database error:', err);
-        res.status(500).json({ error: 'Database error' });
-    }
-});
+app.post('/signIn', signIn);
 
 
 app.get('/user', async (req, res) => {
