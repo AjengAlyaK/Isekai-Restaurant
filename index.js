@@ -4,10 +4,12 @@ const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
 // controller 
-const { signUp, signIn } = require('./src/controller/user')
+const { signUp, signIn } = require('./src/controller/user');
+const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+
 const app = express();
 const port = 7000;
 
@@ -31,54 +33,14 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Kafe Saya',
-        layout: 'layouts/main-layout',
-    });
-});
-
-app.get('/product', (req, res) => {
-    res.render('product', {
-        title: 'Kafe Saya | Produk',
-        layout: 'layouts/main-layout',
-    });
-});
-
-app.get('/promo', (req, res) => {
-    res.render('promo', {
-        title: 'Kafe Saya | Promo',
-        layout: 'layouts/main-layout',
-    });
-});
-
-app.get('/cart', (req, res) => {
-    res.render('cart', {
-        title: 'Kafe Saya | Keranjang Belanja',
-        layout: 'layouts/main-layout',
-    });
-});
-
-app.get('/signUp', (req, res) => {
-    res.render('signUp', {
-        title: 'Kafe Saya | Sign Up',
-        layout: 'layouts/entrance',
-    });
-});
-
-// proses sign up
-app.post('/signUp', signUp);
-
-app.get('/signIn', (req, res) => {
-    res.render('signIn', {
-        title: 'Kafe Saya | Sign In',
-        layout: 'layouts/entrance',
-    });
-});
-
-// proses sign in
-app.post('/signIn', signIn);
-
+app.get('/', root);
+app.get('/product', product);
+app.get('/promo', promo);
+app.get('/cart',cart);
+app.get('/signUp', signUpPage);
+app.post('/signUp', signUp); // proses sign up
+app.get('/signIn', signInPage);
+app.post('/signIn', signIn); // proses sign in
 
 app.get('/user', async (req, res) => {
     try {

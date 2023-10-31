@@ -23,16 +23,14 @@ const signIn = async (req, res) => {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
         req.session.userId = user._id;
-        console.log(req.session.userId);
-        const s = req.session.userId;
-        res.render('index', {
-            title: 'Kafe Saya',
-            layout: 'layouts/main-layout',
-            s
+        res.render('home', {
+            title: 'Home | Kafe Saya',
+            layout: 'layouts/main-home',
         });
     } catch (err) {
         console.error('Database error:', err);
         res.status(500).json({ error: 'Database error' });
     }
 }
+
 module.exports = { signUp, signIn };
