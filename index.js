@@ -4,7 +4,7 @@ const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
 // controller 
-const { signUp, signIn } = require('./src/controller/user');
+const { signUp, signIn, profile } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
 // make session
 const session = require('express-session');
@@ -36,11 +36,12 @@ app.use(sessionMiddleware);
 app.get('/', root);
 app.get('/product', product);
 app.get('/promo', promo);
-app.get('/cart',cart);
+app.get('/cart', cart);
 app.get('/signUp', signUpPage);
 app.post('/signUp', signUp); // proses sign up
 app.get('/signIn', signInPage);
 app.post('/signIn', signIn); // proses sign in
+app.get('/profile', profile);
 
 app.get('/user', async (req, res) => {
     try {
