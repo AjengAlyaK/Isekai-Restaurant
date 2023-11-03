@@ -4,7 +4,7 @@ const User = require('./src/model/user');
 require('./src/utils/db');
 const cors = require('cors');
 // controller 
-const { signUp, signIn, profile } = require('./src/controller/user');
+const { signUp, signIn, profile, logout } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
 // make session
 const session = require('express-session');
@@ -40,8 +40,21 @@ app.get('/cart', cart);
 app.get('/signUp', signUpPage);
 app.post('/signUp', signUp); // proses sign up
 app.get('/signIn', signInPage);
-app.post('/signIn', signIn); // proses sign in
+app.post('/home', signIn); // proses sign in
 app.get('/profile', profile);
+// page after auth
+app.get('/home', async (req, res) => {
+    if (req.session.userId) {
+        const userId = req.session.userId;
+        const user = await User.findOne({ _id: userId });
+        res.render('home',{
+            title: 'Kafe Saya | Home',
+            layout: 'layouts/main-home',
+            user,
+        });
+    }
+});
+app.get('/logout', logout);
 
 app.get('/user', async (req, res) => {
     try {
