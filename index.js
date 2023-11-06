@@ -1,11 +1,15 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const User = require('./src/model/user');
+const Reservation = require('./src/model/reservation');
+const Subscribe = require('./src/model/subscribe');
 require('./src/utils/db');
 const cors = require('cors');
-// controller 
+// controller
 const { signUp, signIn, profile, logout } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
+const { reservation } = require('./src/controller/reservation');
+const { subscribe } = require('./src/controller/subscribe');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -54,6 +58,8 @@ app.get('/home', async (req, res) => {
         });
     }
 });
+app.post('/subscribe', subscribe);
+app.post('/reservation', reservation);
 app.get('/logout', logout);
 
 app.get('/user', async (req, res) => {

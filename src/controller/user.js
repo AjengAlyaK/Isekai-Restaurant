@@ -18,15 +18,11 @@ const signIn = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email, password });
-
         if (!user) {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
         req.session.userId = user._id;
-        res.render('home', {
-            title: 'Home | Kafe Saya',
-            layout: 'layouts/main-home',
-        });
+        res.redirect('/home');
     } catch (err) {
         console.error('Database error:', err);
         res.status(500).json({ error: 'Database error' });
@@ -56,6 +52,6 @@ const logout = (req, res) => {
             res.redirect('/');
         }
     });
-}
+};
 
 module.exports = { signUp, signIn, profile, logout };

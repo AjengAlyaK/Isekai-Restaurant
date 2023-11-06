@@ -270,25 +270,30 @@
         <h2 class="text-center">Reservasi</h2>
         <p class="text-center">Jangan sampai kehabisan tempat. reservasi sekarang !!!</p>
 
-        <form action="" class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-5">
+        <form method="POST" action="/reservation" class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-5">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" autocomplete="off" required>
+                <input name="name" type="text" class="form-control" id="nama" autocomplete="off" required>
             </div>
 
             <div class="mb-3">
                 <label for="nokontak" class="form-label">No Kontak</label>
-                <input type="text" class="form-control" id="nokontak"autocomplete="off" required>
+                <input name="contactNumber" type="text" class="form-control" id="nokontak"autocomplete="off" required>
             </div>
 
             <div class="mb-3">
                 <label for="jumlahmeja" class="form-label">Jumlah Meja</label>
-                <input type="text" class="form-control" id="jumlahmeja" autocomplete="off" required>
+                <input name="tablesAmount" type="text" class="form-control" id="jumlahmeja" autocomplete="off" required>
+            </div>
+
+            <div class="mb-3">
+                <input name="username" value="<%= user.username %>" type="text" class="form-control" id="user" autocomplete="off" hidden required>
             </div>
 
             <div>
-                <button class="btn btn-warning text-light w-100">Reservasi</button>
+                <button type="submit" class="btn btn-warning text-light w-100">Reservasi</button>
             </div>
+
         </form>
     </div>
 </div>
@@ -315,11 +320,14 @@
         <h5 class="text-center text-light mt-5 mb-0">Subscribe</h5>
         <p class="text-center text-light">Untuk informasi tentang promo</p>
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-warning text-light" type="button" id="button-addon2">Button</button>
-            </div>
-        </div>
+            <form action="/subscribe" method="post">
+                <div class="input-group mb-3">
+                    <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
+                    <button class="btn btn-warning text-light" type="submit" id="button-addon2">Button</button>
+                </div>
+            </form>
+    </div>
     </div>
 </div>
 
