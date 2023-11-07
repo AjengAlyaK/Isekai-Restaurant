@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const User = require('./src/model/user');
 const Reservation = require('./src/model/reservation');
 const Subscribe = require('./src/model/subscribe');
+const Product = require('./src/model/product');
 require('./src/utils/db');
 const cors = require('cors');
 // controller
@@ -10,12 +11,13 @@ const { signUp, signIn, profile, logout } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
 const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
+const { allproducts, allpromo, mycart } = require('./src/controller/home');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const app = express();
-const port = 7000;
+const port = 9000;
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -58,6 +60,9 @@ app.get('/home', async (req, res) => {
         });
     }
 });
+app.get('/allproducts', allproducts);
+app.get('/allpromo', allpromo);
+app.get('/mycart', mycart);
 app.post('/subscribe', subscribe);
 app.post('/reservation', reservation);
 app.get('/logout', logout);
@@ -74,7 +79,7 @@ app.get('/user', async (req, res) => {
 
 });
 
-app.listen(port, "0.0.0.0", () => {
-    console.log(`listening to port ${port}...`);
+app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}`);
 });
 

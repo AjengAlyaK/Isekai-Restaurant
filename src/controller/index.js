@@ -22,10 +22,10 @@ const promo = (req, res) => {
     });
 }
 
-const cart =  (req, res) => {
+const cart = async (req, res) => {
     res.render('cart', {
         title: 'Kafe Saya | Keranjang Belanja',
-        layout: 'layouts/main-layout',
+        layout: 'layouts/main-layout'
     });
 }
 
