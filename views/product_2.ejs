@@ -13,11 +13,11 @@
             <div class="col-md-4 col-lg-3 mb-5">
                 <h4 class="mb-4">Kategori</h4>
                 <ul class="list-group">
-                    <li class="list-group-item active" aria-current="true">Semua</li>
-                    <li class="list-group-item">Western Food</li>
-                    <li class="list-group-item">Eastern Food</li>
-                    <li class="list-group-item">Desert</li>
-                    <li class="list-group-item">Beverage</li>
+                    <a href="" type="button" class="list-product" id="allProduct" onclick="allProduct()"><li class="list-group-item">Semua</li></a>
+                    <a href="" type="button" class="list-product" id="westernFood" onclick="western()"><li class="list-group-item">Western Food</li></a>
+                    <a href="" type="button" class="list-product" id="easternFood" onclick="eastern()"><li class="list-group-item">Eastern Food</li></a>
+                    <a href="" type="button" class="list-product" id="desert" onclick="desert()"><li class="list-group-item">Desert</li></a>
+                    <a href="" type="button" class="list-product" id="beverage" onclick="beverage()"><li class="list-group-item">Beverage</li></a>
                 </ul>
             </div>
             <!-- produk -->
@@ -26,8 +26,8 @@
 
                 <div class="row">
                     <% products.forEach((p, i) => { i++ %>
-                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
-                        <div class="card" style="width: 17rem;">
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3 <%= p.category %>">
+                        <div class="card" style="width:  17rem;">
 
                             <a href="image/product/<%= p.pict_product %>" data-lightbox="<%= p.pict_product %>"
                                 data-title="<%= p.name_product %>">
@@ -42,15 +42,16 @@
 
                                 <h4 class="text-center text-warning mb-3">Rp <%= p.price %></h4>
                                 <div class="dropdown">
-
-                                    <button class="btn btn-outline-warning  dropdown-toggle w-100" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Selengkapnya
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="detail.html">Lihat</a></li>
-                                        <li><a class="dropdown-item" href="#">Beli</a></li>
-                                    </ul>
+                                    <form action="/checkout" method="post">
+                                        <input name="buyer" value="<%= user.username %>" type="text" hidden>
+                                        <input name="name_product" value="<%= p.name_product %>" type="text" hidden>
+                                        <input name="pict_product" value="<%= p.pict_product %>" type="text" hidden>
+                                        <input name="pict_thumb" value="<%= p.pict_thumb %>" type="text" hidden>
+                                        <input name="price" value="<%= p.price %>" type="number" hidden>
+                                        <button class="btn btn-outline-warning w-100" type="submit"  aria-expanded="false">
+                                            Beli
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -109,3 +110,90 @@
 <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
 <!-- lightbox -->
 <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+<script>
+    // maybe bug huhu
+    const btnAllProduct = $("#allProduct");
+    const btnWesternFood = $("#westernFood");
+    const btnEasternFood = $("#easternFood");
+    const btnDesert = $("#desert");
+    const btnBeverage = $("#beverage");
+
+    const allProductView = $(".allProduct");
+    const westernFoodView = $(".Western");
+    const EasternFoodView = $(".Eastern");
+    const desertView = $(".Desert");
+    const beverageView = $(".Beverage");
+
+    // promoDiskonView.hide();
+    // promoBonusView.hide();
+
+    function allProduct(){
+        btnAllProduct.addClass("active");
+        btnWesternFood.removeClass("active");
+        btnEasternFood.removeClass("active");
+        btnDesert.removeClass("active");
+        btnBeverage.removeClass("active");
+
+        allProductView.show(1000);
+        westernFoodView.show(1000);
+        EasternFoodView.show(1000);
+        desertView.show(1000);
+        beverageView.show(1000);
+    };
+
+    function westernFood(){
+        btnSbtnAllProduct.removeClass("active");
+        btnWesternFood.addClass("active");
+        btnEasternFood.removeClass("active");
+        btnDesert.removeClass("active");
+        btnBeverage.removeClass("active");
+
+        allProductView.hide(1000);
+        westernFoodView.show(1000);
+        EasternFoodView.hide(1000);
+        desertView.hide(1000);
+        beverageView.hide(1000);
+    };
+
+    function easternFood(){
+        btnSbtnAllProduct.removeClass("active");
+        btnWesternFood.removeClass("active");
+        btnEasternFood.addClass("active");
+        btnDesert.removeClass("active");
+        btnBeverage.removeClass("active");
+
+        allProductView.hide(1000);
+        westernFoodView.hide(1000);
+        EasternFoodView.show(1000);
+        desertView.hide(1000);
+        beverageView.hide(1000);
+    };
+
+    function desert(){
+        btnSbtnAllProduct.removeClass("active");
+        btnWesternFood.removeClass("active");
+        btnEasternFood.removeClass("active");
+        btnDesert.addClass("active");
+        btnBeverage.removeClass("active");
+
+        allProductView.hide(1000);
+        westernFoodView.hide(1000);
+        EasternFoodView.hide(1000);
+        desertView.show(1000);
+        beverageView.hide(1000);
+    };
+
+    function beverage(){
+        btnSbtnAllProduct.removeClass("active");
+        btnWesternFood.removeClass("active");
+        btnEasternFood.removeClass("active");
+        btnDesert.removeClass("active");
+        btnBeverage.addClass("active");
+
+        allProductView.hide(1000);
+        westernFoodView.hide(1000);
+        EasternFoodView.hide(1000);
+        desertView.hide(1000);
+        beverageView.show(1000);
+    };
+</script>

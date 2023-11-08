@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Membuat Schema User
+// Membuat Schema Product
 const Product = mongoose.model('Product', {
     name_product: {
         type: String,

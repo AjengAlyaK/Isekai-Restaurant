@@ -91,3 +91,13 @@ body{
 .larger-icon{
     font-size: 2em;
 }
+
+/* halaman promo */
+.list-product{
+    text-decoration: none;
+    color: black;
+}
+
+.list-product .list-group-item:hover {
+    background-color: #ffc107;
+}

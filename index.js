@@ -12,6 +12,7 @@ const { root, product, promo, cart, signUpPage, signInPage } = require('./src/co
 const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
+const { addToCart } = require('./src/controller/cart');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -65,6 +66,7 @@ app.get('/allpromo', allpromo);
 app.get('/mycart', mycart);
 app.post('/subscribe', subscribe);
 app.post('/reservation', reservation);
+app.post('/checkout', addToCart);
 app.get('/logout', logout);
 
 app.get('/user', async (req, res) => {
