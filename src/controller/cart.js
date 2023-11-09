@@ -9,8 +9,8 @@ const addToCart =  (req, res) => {
             res.status(201).json(e);
         })
         .catch((error) => {
-            console.error('Error creating user:', error);
-            res.status(500).json({ error: 'Failed to create user' });
+            console.error('Error add to cart:', error);
+            res.status(500).json({ error: 'Failed add to cart ' });
         });
 };
 

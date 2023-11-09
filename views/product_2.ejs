@@ -42,7 +42,7 @@
 
                                 <h4 class="text-center text-warning mb-3">Rp <%= p.price %></h4>
                                 <div class="dropdown">
-                                    <form action="/checkout" method="post">
+                                    <form action="/addtocart" method="post">
                                         <input name="buyer" value="<%= user.username %>" type="text" hidden>
                                         <input name="name_product" value="<%= p.name_product %>" type="text" hidden>
                                         <input name="pict_product" value="<%= p.pict_product %>" type="text" hidden>

@@ -1,5 +1,6 @@
 const User = require('../model/user');
 const Products = require('../model/product');
+const Cart = require('../model/cart');
 
 const allproducts = async (req, res) => {
     if (req.session.userId) {
@@ -31,10 +32,13 @@ const mycart = async (req, res) => {
     if (req.session.userId) {
         const userId = req.session.userId;
         const user = await User.findOne({ _id: userId });
+        const mycart = await Cart.find({ buyer: user.username });
+        // console.log(mycart);
         res.render('mycart',{
             title: 'Kafe Saya | Cart',
             layout: 'layouts/main-home',
-            user
+            user,
+            mycart
         });
     }
 };

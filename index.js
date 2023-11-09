@@ -66,7 +66,7 @@ app.get('/allpromo', allpromo);
 app.get('/mycart', mycart);
 app.post('/subscribe', subscribe);
 app.post('/reservation', reservation);
-app.post('/checkout', addToCart);
+app.post('/addtocart', addToCart);
 app.get('/logout', logout);
 
 app.get('/user', async (req, res) => {

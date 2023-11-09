@@ -2,54 +2,43 @@
     <div class="container">
         <h2 class="text-center my-5">Keranjang Belanja</h2>
 
-        <div class="table-responsive">
+        <div class="table-responsive" id="mycart">
             <table class="table">
-                <tr>
-                    <th>#</th>
-                    <th>Pesanan</th>
-                    <th>Harga</th>
-                    <th>Jumlah</th>
-                    <th>Total</th>
-                </tr>
-                <tr style="vertical-align: middle;">
-                    <td>
-                        <a href="image/product/french-fries.jpg" data-lightbox="French Fries" data-title="French Fries">
-                            <img src="image/product/thumb/french-fries.jpg" class="img-thumbnail d-none d-sm-block" width="150px" alt="">
-                            <label class="d-block d-sm-none" for="">French Fries</label>
-                        </a>
-                    </td>
-                    <td>French Fries</td>
-                    <td>Rp 20.000</td>
-                    <td>1</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr style="vertical-align: middle;">
-                    <td>
-                        <a href="image/product/steak.jpg" data-lightbox="Steak" data-title="Steak">
-                            <img src="image/product/thumb/steak.jpg" class="img-thumbnail d-none d-sm-block" width="150px" alt="">
-                            <label class="d-block d-sm-none" for="">Steak</label>
-                        </a>
-                    </td>
-                    <td>Steak</td>
-                    <td>Rp 85.000</td>
-                    <td>2</td>
-                    <td>Rp 170.000</td>
-                </tr>
-                <tr style="vertical-align: middle;">
-                    <td>
-                        <a href="image/product/strawberry-drink.jpg" data-lightbox="Strawberry Drink" data-title="Strawberry Drink">
-                            <img src="image/product/thumb/strawberry-drink.jpg" class="img-thumbnail d-none d-sm-block" width="150px" alt="">
-                            <label class="d-block d-sm-none" for="">Strawberry Drink</label>
-                        </a>
-                    </td>
-                    <td>Strawberry Drink</td>
-                    <td>Rp 25.000</td>
-                    <td>2</td>
-                    <td>Rp 50.000</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Pesanan</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% mycart.forEach((c, i) => { i++ %>
+                        <tr style="vertical-align: middle;">
+                            <td>
+                                <a href="image/product/<%= c.pict_product %>" data-lightbox="<%= c.name_product %>" data-title="<%= c.name_product %>">
+                                    <img src="image/product/thumb/<%= c.pict_thumb %>" class="img-thumbnail d-none d-sm-block" width="150px" alt="">
+                                    <label class="d-block d-sm-none" for=""><%= c.name_product %></label>
+                                </a>
+                            </td>
+                            <td><%= c.name_product %></td>
+                            <td>Rp <%= c.price * 2%></td>
+                            <td class="quantity">2</td>
+                            <td class="price" style="display:none;"><%= c.price %></td>
+                            <td class="total1"></td>
+                        </tr>
+                        <script>
+                            const quantity = parseInt(document.getElementById('quantity').innerText);
+                            const price = parseInt(document.getElementById('price').innerText);
+                            const total = quantity * price;
+                            document.getElementById('total1').innerHTML = 'Rp '+ total;
+                        </script>
+                    <% }) %>
                     <th colspan="4">Total</th>
-                    <th>Rp 240.000</th>
+                    <th id="total2">Rp 240.000</th>
                 <tr></tr>
+                </tbody>
             </table>
         </div>
 
@@ -93,3 +82,4 @@
 <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
 <!-- lightbox -->
 <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+
