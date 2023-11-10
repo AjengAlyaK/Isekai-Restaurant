@@ -14,30 +14,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% mycart.forEach((c, i) => { i++ %>
+                    <% mycart.forEach((c, i)=> { i++ %>
                         <tr style="vertical-align: middle;">
                             <td>
-                                <a href="image/product/<%= c.pict_product %>" data-lightbox="<%= c.name_product %>" data-title="<%= c.name_product %>">
-                                    <img src="image/product/thumb/<%= c.pict_thumb %>" class="img-thumbnail d-none d-sm-block" width="150px" alt="">
-                                    <label class="d-block d-sm-none" for=""><%= c.name_product %></label>
+                                <a href="image/product/<%= c.pict_product %>" data-lightbox="<%= c.name_product %>"
+                                    data-title="<%= c.name_product %>">
+                                    <img src="image/product/thumb/<%= c.pict_thumb %>"
+                                        class="img-thumbnail d-none d-sm-block" width="150px" alt="">
+                                    <label class="d-block d-sm-none" for="">
+                                        <%= c.name_product %>
+                                    </label>
                                 </a>
                             </td>
-                            <td><%= c.name_product %></td>
-                            <td>Rp <%= c.price * 2%></td>
-                            <td class="quantity">2</td>
-                            <td class="price" style="display:none;"><%= c.price %></td>
-                            <td class="total1"></td>
+                            <td>
+                                <%= c.name_product %>
+                            </td>
+                            <td>Rp <%= c.price %></td>
+                            <td class="quantity">
+                                <div class="container">
+                                    <input type="button" class="btn border" onclick="decrementValue(parseInt('<%= i %>'))"  value="-" />
+                                    <input type="text" class="input-form" name="quantity" value="1" maxlength="2" max="10" size="1"
+                                        id="index_<%= i %>" oninput="updateTotal(parseInt('<%= i %>'))"/>
+                                    <input type="button" class="btn border" onclick="incrementValue(parseInt('<%= i %>'))" value="+" />
+                                </div>
+                            </td>
+                            <td id="price_<%= i %>" style="display:none;"><%= c.price %></td>
+                            <td id="total_<%= i %>">Rp <%= c.price %></td>
                         </tr>
-                        <script>
-                            const quantity = parseInt(document.getElementById('quantity').innerText);
-                            const price = parseInt(document.getElementById('price').innerText);
-                            const total = quantity * price;
-                            document.getElementById('total1').innerHTML = 'Rp '+ total;
-                        </script>
-                    <% }) %>
-                    <th colspan="4">Total</th>
-                    <th id="total2">Rp 240.000</th>
-                <tr></tr>
+                        <% }) %>
+                            <th colspan="4">Total</th>
+                            <th id="overalltotal">Rp 0</th>
+                            <tr></tr>
                 </tbody>
             </table>
         </div>
@@ -70,8 +77,10 @@
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <form action="/subscribe" method="post">
                 <div class="input-group mb-3">
-                    <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
+                    <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input name="username" value="<%= user.username %>" type="text" class="form-control"
+                        autocomplete="off" hidden>
                     <button class="btn btn-warning text-light" type="submit" id="button-addon2">Button</button>
                 </div>
             </form>
@@ -82,4 +91,44 @@
 <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
 <!-- lightbox -->
 <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+<script type="text/javascript">
+    // increment
+    function incrementValue(index) {
+        var inputField = document.getElementById('index_' + String(index));
+        var total = document.getElementById('total_' + String(index));
+        var price = parseInt(document.getElementById('price_' + String(index)).innerHTML);
+        if (inputField) {
+            var value = parseInt(inputField.value, 10);
+            value = isNaN(value) ? 0 : value;
+            if (value < 10) {
+                value++;
+                inputField.value = value;
+                total.innerHTML = 'Rp ' + price * value;
+            }
+        }
+    }
+
+    // decrement
+    function decrementValue(index) {
+        var inputField = document.getElementById('index_' + String(index));
+        var total = document.getElementById('total_' + String(index));
+        var price = parseInt(document.getElementById('price_' + String(index)).innerHTML);
+        if (inputField) {
+            var value = parseInt(inputField.value, 10);
+            value = isNaN(value) ? 0 : value;
+            if (value > 1) {
+                value--;
+                inputField.value = value;
+                total.innerHTML = 'Rp ' + price * value;
+            }
+        }
+    }
+
+    console.log(incrementValue(index));
+ 
+
+</script>
+
+
+
 
