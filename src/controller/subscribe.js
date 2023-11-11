@@ -5,11 +5,10 @@ const subscribe =  (req, res) => {
 
     Subscribe.create(subscribeData) 
         .then((subscriber) => {
-            console.log('Subscriber created:', subscriber);
-            res.status(201).json(subscriber);
+            res.status(201);
+            res.redirect('/home')
         })
         .catch((error) => {
-            console.error('Error creating subscriber:', error);
             res.status(500).json({ error: 'Failed to create subscriber' });
         });
 }
