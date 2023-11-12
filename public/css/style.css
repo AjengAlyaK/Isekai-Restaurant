@@ -101,3 +101,8 @@ body{
 .list-product .list-group-item:hover {
     background-color: #ffc107;
 }
+
+/* clean link */
+.clean-link{
+    text-decoration: none;
+}

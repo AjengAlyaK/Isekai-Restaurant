@@ -4,6 +4,8 @@ const User = require('./src/model/user');
 const Reservation = require('./src/model/reservation');
 const Subscribe = require('./src/model/subscribe');
 const Product = require('./src/model/product');
+const Cart = require('./src/model/cart');
+const Checkout = require('./src/model/checkout');
 require('./src/utils/db');
 const cors = require('cors');
 // controller
@@ -12,13 +14,18 @@ const { root, product, promo, cart, signUpPage, signInPage } = require('./src/co
 const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
-const { addToCart } = require('./src/controller/cart');
+const { addToCart, checkout } = require('./src/controller/cart');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+// method override 
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 9000;
+
+// setup method override
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -67,6 +74,13 @@ app.get('/mycart', mycart);
 app.post('/subscribe', subscribe);
 app.post('/reservation', reservation);
 app.post('/addtocart', addToCart);
+app.delete('/delete-cart', (req, res) => {
+    Cart.deleteOne({ _id: req.body.id }).then((result) => {
+        // req.flash('msg', 'Data contact berhasil dihapus!');
+        res.redirect('/mycart');
+    })
+});
+app.post('/checkout', checkout);
 app.get('/logout', logout);
 
 app.get('/user', async (req, res) => {

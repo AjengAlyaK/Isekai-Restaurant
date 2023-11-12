@@ -11,6 +11,7 @@
                         <th>Harga</th>
                         <!-- <th>Jumlah</th>
                         <th>Total</th> -->
+                        <th>Ubah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,10 +30,20 @@
                             <td>
                                 <%= c.name_product %>
                             </td>
-                            <td>Rp <%= c.price %></td>
-                            <td id="price_<%= i %>" style="display:none;"><%= c.price %></td>
+                            <td>Rp <%= c.price %>
+                            </td>
+                            <td id="price_<%= i %>" style="display:none;">
+                                <%= c.price %>
+                            </td>
                             <!-- <td class="quantity">1</td> -->
                             <!-- <td id="total_<%= i %>">Rp <%= c.price %></td> -->
+                            <td>
+                                <form action="/delete-cart?_method=DELETE" method="post">
+                                    <input type="text" name="id" value="<%= c._id %>" hidden>
+                                    <button class="btn btn-danger badge" type="submit"
+                                        class="clean-link">delete</button>
+                                </form>
+                            </td>
                         </tr>
                         <% }) %>
                             <th colspan="2">Total</th>
@@ -42,8 +53,17 @@
             </table>
         </div>
 
-        <button class="btn btn-warning text-light">Checkout</button>
-        <p id="cart-length" style="display:none;"><%= mycart.length %></p>
+        <form action="/checkout" method="post">
+            <input type="text" name="username" value="<%= user.username %>" hidden>
+            <% mycart.forEach((c, i)=> { i++ %>
+                <input type="text" name="products[<%= i %>][product_name]" value="<%= c.name_product %>" hidden>
+                <input type="number" name="products[<%= i %>][price]" value="<%= c.price %>" hidden>
+            <% }) %>
+            <button class="btn btn-warning text-light">Checkout</button>
+        </form>
+        <p id="cart-length" style="display:none;">
+            <%= mycart.length %>
+        </p>
     </div>
 </div>
 
@@ -72,7 +92,7 @@
             <form action="/subscribe" method="post">
                 <div class="input-group mb-3">
                     <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                        aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
                     <input name="username" value="<%= user.username %>" type="text" class="form-control"
                         autocomplete="off" hidden>
                     <button class="btn btn-warning text-light" type="submit" id="button-addon2">Button</button>
@@ -94,10 +114,6 @@
         const price = parseInt(document.getElementById(idPrice).innerHTML);
         countTotal += price;
     }
-    
+
     overallTotal.innerHTML = `Rp ${countTotal}`;
 </script>
-
-
-
-
