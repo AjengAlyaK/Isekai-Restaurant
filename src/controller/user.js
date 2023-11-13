@@ -1,4 +1,5 @@
 const User = require('../model/user');
+const Checkout = require('../model/checkout');
 
 const signUp =  (req, res) => {
     const userData = req.body;
@@ -33,11 +34,15 @@ const profile = async (req, res) => {
     if (req.session.userId) {
         const userId = req.session.userId;
         const user = await User.findOne({ _id: userId });
+        const buyer = user.username;
+        const checkout = await Checkout.findOne({ username: buyer });
+        console.log(checkout);
         // res.send(user.username);
         res.render('profile',{
             title: 'Kafe Saya | Profile',
             layout: 'layouts/main-home',
             user,
+            checkout
         });
     } else {
         res.status(500).send({ error: error.message });
