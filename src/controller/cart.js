@@ -7,8 +7,9 @@ const addToCart =  (req, res) => {
 
         Cart.create(element) 
             .then((e) => {
-                console.log('Product added to cart:', e);
-                res.status(201).json(e);
+                // console.log('Product added to cart:', e);
+                // res.status(201).json(e);
+                res.redirect('/allproducts');
             })
             .catch((error) => {
                 console.error('Error add to cart:', error);
@@ -20,23 +21,6 @@ const addToCart =  (req, res) => {
 };
 
 const checkout = async (req, res) => {
-    // if (req.session.userId) {
-    //     const onCart = req.body;
-    //     const buyer = req.body.username;
-
-    //     Checkout.insertMany(onCart)
-    //             .then((oc) => {
-    //                 console.log('Checkout success', oc);
-    //                 res.status(201).json(oc);
-    //             })
-    //             .catch((error) => {
-    //                 console.error('Checkout error:', error);
-    //                 res.status(500).json({ error: 'Checkout Failed ' });
-    //             });
-    //     const buy = await Cart.deleteMany({ buyer: buyer });
-    // } else {
-    //     res.status(500).send({ error: error.message });
-    // }
     try {
         if(!req.session.userId){
             throw new Error('user not authenticated');
@@ -46,8 +30,9 @@ const checkout = async (req, res) => {
         const buyer = body.username;
 
         const checkoutResult = await Checkout.insertMany(onCart);
-        console.log('Checkout success', checkoutResult);
-        res.status(201).json(checkoutResult);
+        // console.log('Checkout success', checkoutResult);
+        // res.status(201).json(checkoutResult);
+        res.redirect('/mycart');
 
         await Cart.deleteMany({ buyer });
     } catch (error) {
@@ -56,4 +41,11 @@ const checkout = async (req, res) => {
     }
 }
 
-module.exports = { addToCart, checkout };
+const deleteCart = (req, res) => {
+    Cart.deleteOne({ _id: req.body.id }).then((result) => {
+        // req.flash('msg', 'Data contact berhasil dihapus!');
+        res.redirect('/mycart');
+    })
+}
+
+module.exports = { addToCart, checkout, deleteCart };

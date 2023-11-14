@@ -5,14 +5,24 @@ const Cart = require('../model/cart');
 const allproducts = async (req, res) => {
     if (req.session.userId) {
         const userId = req.session.userId;
-        const user = await User.findOne({ _id: userId });
-        const products = await Products.find();
-        res.render('product_2',{
-            title: 'Kafe Saya | Products',
-            layout: 'layouts/main-home',
-            user,
-            products
-        });
+        try {
+            const user = await User.findOne({ _id: userId });
+            const products = await Products.find();
+            res.render('product_2',{
+                title: 'Kafe Saya | Products',
+                layout: 'layouts/main-home',
+                user,
+                products
+            });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // res.status(500).render('error', {
+            // title: 'Kafe Saya | Error',
+            // layout: 'layouts/main-home',
+            // errorMessage: 'An error occurred while fetching data. Please try again later.'
+            // });
+        }
+        
     }
 };
 

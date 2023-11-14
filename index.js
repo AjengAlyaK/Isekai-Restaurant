@@ -9,12 +9,12 @@ const Checkout = require('./src/model/checkout');
 require('./src/utils/db');
 const cors = require('cors');
 // controller
-const { signUp, signIn, profile, logout } = require('./src/controller/user');
+const { signUp, signIn, profile, logout, home } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
 const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
-const { addToCart, checkout } = require('./src/controller/cart');
+const { addToCart, checkout, deleteCart } = require('./src/controller/cart');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -57,29 +57,14 @@ app.get('/signIn', signInPage);
 app.post('/home', signIn); // proses sign in
 app.get('/profile', profile);
 // page after auth
-app.get('/home', async (req, res) => {
-    if (req.session.userId) {
-        const userId = req.session.userId;
-        const user = await User.findOne({ _id: userId });
-        res.render('home',{
-            title: 'Kafe Saya | Home',
-            layout: 'layouts/main-home',
-            user,
-        });
-    }
-});
+app.get('/home', home);
 app.get('/allproducts', allproducts);
 app.get('/allpromo', allpromo);
 app.get('/mycart', mycart);
 app.post('/subscribe', subscribe);
 app.post('/reservation', reservation);
 app.post('/addtocart', addToCart);
-app.delete('/delete-cart', (req, res) => {
-    Cart.deleteOne({ _id: req.body.id }).then((result) => {
-        // req.flash('msg', 'Data contact berhasil dihapus!');
-        res.redirect('/mycart');
-    })
-});
+app.delete('/delete-cart', deleteCart);
 app.post('/checkout', checkout);
 app.get('/logout', logout);
 

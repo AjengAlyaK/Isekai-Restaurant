@@ -1,6 +1,18 @@
 const User = require('../model/user');
 const Checkout = require('../model/checkout');
 
+const home = async (req, res) => {
+    if (req.session.userId) {
+        const userId = req.session.userId;
+        const user = await User.findOne({ _id: userId });
+        res.render('home',{
+            title: 'Kafe Saya | Home',
+            layout: 'layouts/main-home',
+            user,
+        });
+    }
+}
+
 const signUp =  (req, res) => {
     const userData = req.body;
 
@@ -45,7 +57,8 @@ const profile = async (req, res) => {
             checkout
         });
     } else {
-        res.status(500).send({ error: error.message });
+        // here better add error 
+        // res.status(500).send({ error: error.message });
     }
 };
 
@@ -59,4 +72,4 @@ const logout = (req, res) => {
     });
 };
 
-module.exports = { signUp, signIn, profile, logout };
+module.exports = { signUp, signIn, profile, logout, home };

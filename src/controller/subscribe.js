@@ -1,16 +1,17 @@
 const Subscribe = require('../model/subscribe');
 
-const subscribe =  (req, res) => {
-    const subscribeData = req.body;
+const subscribe =  async (req, res) => {
+    if (req.session.userId) {
+        const subscribeData = req.body;
 
-    Subscribe.create(subscribeData) 
-        .then((subscriber) => {
+        try {
+            const subscribe = await Subscribe.create(subscribeData);
             res.status(201);
-            res.redirect('/home')
-        })
-        .catch((error) => {
+            res.redirect('/home');
+        } catch (error) {
             res.status(500).json({ error: 'Failed to create subscriber' });
-        });
+        }
+    }
 }
 
 module.exports = { subscribe };
