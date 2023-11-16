@@ -68,6 +68,27 @@ app.delete('/delete-cart', deleteCart);
 app.post('/checkout', checkout);
 app.get('/logout', logout);
 
+// admin
+app.get('/admin', async (req, res) => {
+    res.render('admin-index',{
+        title: 'FlavourSpark',
+        layout: 'layouts/admin-layout',
+    });
+});
+app.get('/process-order', async (req, res) => {
+    res.render('process-order',{
+        title: 'FlavourSpark',
+        layout: 'layouts/admin-layout',
+    });
+});
+app.get('/process-reservation', async (req, res) => {
+    res.render('process-reservation',{
+        title: 'FlavourSpark',
+        layout: 'layouts/admin-layout',
+    });
+});
+
+
 app.get('/user', async (req, res) => {
     try {
         const users = await User.find();
