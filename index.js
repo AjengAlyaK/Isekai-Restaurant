@@ -15,6 +15,7 @@ const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
 const { addToCart, checkout, deleteCart } = require('./src/controller/cart');
+const { processOrder, deleteProcessOrder } = require('./src/controller/admin');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -75,19 +76,14 @@ app.get('/admin', async (req, res) => {
         layout: 'layouts/admin-layout',
     });
 });
-app.get('/process-order', async (req, res) => {
-    res.render('process-order',{
-        title: 'FlavourSpark',
-        layout: 'layouts/admin-layout',
-    });
-});
+app.get('/process-order', processOrder);
 app.get('/process-reservation', async (req, res) => {
     res.render('process-reservation',{
         title: 'FlavourSpark',
         layout: 'layouts/admin-layout',
     });
 });
-
+app.delete('/delete-process-order', deleteProcessOrder);
 
 app.get('/user', async (req, res) => {
     try {

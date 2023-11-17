@@ -178,21 +178,43 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
-                                            <th>Detail</th>
+                                            <th>Detail Order</th>
+                                            <th>Total</th>
                                             <th>Status</th>
-                                            <th>Update Status</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06</td>
-                                            <td><a href="">process</a> | <a href="">delete</a></td>
-                                        </tr>
+                                        <% checkoutUser.forEach((c, i) => { %>
+                                            <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><%= c.username %></td>
+                                                <td>
+                                                    <% c.products.forEach((z) => { %>
+                                                        <%= z.product_name %></p>
+                                                    <% }) %>
+                                                </td>
+                                                <td>
+                                                    <% let total = 0 %>
+                                                    <% c.products.forEach((x) => { %>
+                                                        <% total += x.price %>
+                                                    <% }) %>
+                                                    <p><%= total %></p>
+                                                </td>
+                                                <td><%= c.status %></td>
+                                                <td> - </td>
+                                                <td>
+                                                    <form action="" style="display: inline;">
+                                                        <button class="btn btn-success badge" type="submit" class="clean-link">process</button>
+                                                    </form> | 
+                                                    <form action="/delete-process-order?_method=DELETE" method="post" style="display: inline;">
+                                                        <input type="text" name="id" value="<%= c._id %>" hidden>
+                                                        <button class="btn btn-danger badge" type="submit" class="clean-link">delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <% }) %>
                                     </tbody>
                                 </table>
                             </div>
