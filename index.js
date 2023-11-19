@@ -71,19 +71,37 @@ app.get('/logout', logout);
 
 // admin
 app.get('/admin', async (req, res) => {
-    res.render('admin-index',{
+    res.render('admin-index', {
         title: 'FlavourSpark',
         layout: 'layouts/admin-layout',
     });
 });
 app.get('/process-order', processOrder);
 app.get('/process-reservation', async (req, res) => {
-    res.render('process-reservation',{
+    res.render('process-reservation', {
         title: 'FlavourSpark',
         layout: 'layouts/admin-layout',
     });
 });
 app.delete('/delete-process-order', deleteProcessOrder);
+app.put('/update-status-order', async (req, res) => {
+    try {
+        await Checkout.updateOne(
+            { _id: req.body._id},
+            {
+                $set: {
+                    status: req.body.status
+                }
+            }
+        ).then((result) =>{
+            // kirimkan flash message
+            // req.flash('msg', 'Data contact berhasil diubah!');
+            res.redirect('/process-order');
+        });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
 
 app.get('/user', async (req, res) => {
     try {
