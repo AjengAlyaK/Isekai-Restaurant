@@ -53,14 +53,80 @@
             </table>
         </div>
 
-        <form action="/checkout" method="post">
-            <input type="text" name="username" value="<%= user.username %>" hidden>
-            <% mycart.forEach((c, i)=> { i++ %>
-                <input type="text" name="products[<%= i %>][product_name]" value="<%= c.name_product %>" hidden>
-                <input type="number" name="products[<%= i %>][price]" value="<%= c.price %>" hidden>
-            <% }) %>
-            <button class="btn btn-warning text-light">Checkout</button>
-        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="checkOut" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Your Detail Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="/checkout" method="post">
+                        <div class="modal-body">
+                            <div class="form-floating mb-3">
+                                <!-- <input type="text" name="_id" value="" hidden> -->
+                                <% let total = 0 %>
+                                <% mycart.forEach((c, i)=> { i++ %>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p><%= c.name_product %></p>
+                                            <input type="text" name="products[<%= i %>][product_name]" value="<%= c.name_product %>" hidden>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Rp <%= c.price %></p>
+                                            <input type="text" name="products[<%= i %>][price]" value="<%= c.price %>" hidden>
+                                        </div>
+                                    </div>
+                                    <% total += c.price %>
+                                <% }) %>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Total</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Rp <%= total %></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-6">
+                                        Payment
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-select form-select-sm" name="payment" aria-label=".form-select-sm example" required>
+                                            <option selected>Select Payment</option>
+                                            <option value="COD">Cash On Delivery</option>
+                                            <option value="Others">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Address</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <input name="address" type="text" class="form-control form-control-sm" value="<%= user.address %>">
+                                        <input name="username" value="<%= user.username %>" type="text" hidden>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Checkout</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-warning text-light" data-bs-toggle="modal" data-bs-target="#checkOut">Checkout</button>
         <p id="cart-length" style="display:none;">
             <%= mycart.length %>
         </p>

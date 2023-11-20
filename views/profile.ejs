@@ -7,12 +7,8 @@
                         <img src="/image/avatar/taylor.jpg" class="rounded-circle mx-auto d-block mt-4"
                             style="width: 30%;" />
                         <!-- this should be name actually -->
-                        <h4 class="text-center my-4">Name</h4>
+                        <h4 class="text-center my-4"><%= user.username %></h4>
                         <div class="justify-content-center">
-                            <div class="row offset-1 mb-3">
-                                <div class="col-4 fw-bold">Username</div>
-                                <div class="col-6"><%= user.username %></div>
-                            </div>
                             <div class="row offset-1 mb-3">
                                 <div class="col-4 fw-bold">Email</div>
                                 <div class="col-6"><%= user.email %></div>
@@ -27,7 +23,7 @@
                             </div>
                             <div class="row offset-1 mb-3">
                                 <div class="col-4 fw-bold">Address</div>
-                                <div class="col-6">Addresss Placeholder</div>
+                                <div class="col-6"><%= user.address %></div>
                             </div>
                         </div>
                     </div>

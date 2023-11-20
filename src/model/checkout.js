@@ -22,6 +22,14 @@ const checkoutUser = new mongoose.Schema({
         type: String,
         default: 'In Process',
     },
+    payment: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true
+    }
 });
 
 // Add timestamps option to the schema
