@@ -169,30 +169,71 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-dark">Process Reservation</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Username</th>
                                             <th>Name</th>
                                             <th>Phone Number</th>
                                             <th>Table Quantity</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% reservation.forEach((r, i)=> { %>
                                         <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06</td>
-                                            <td><a href="">accept</a> | <a href="">delete</a></td>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= r.name %></td>
+                                            <td><%= r.contactNumber %></td>
+                                            <td><%= r.tablesAmount %></td>
+                                            <td>-</td>
+                                            <td><%= r.status %></td>
+                                            <td>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="processReservation" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Update Status Reservation</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <form action="/update-status-reservation?_method=PUT" method="POST">
+                                                                <div class="modal-body">
+                                                                    <div class="form-floating mb-3">
+                                                                        <input type="text" name="_id" value="<%= r._id %>" hidden>
+                                                                        <input type="text" name="status" class="form-control" id="floatingInput" value="<%= r.status %>" autocomplete="off">
+                                                                        <label for="floatingInput">Status Order</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <button class="btn btn-success badge" type="submit"
+                                                    class="clean-link" data-bs-toggle="modal" data-bs-target="#processReservation">process</button> |
+                                                <form action="/delete-process-order?_method=DELETE" method="post"
+                                                    style="display: inline;">
+                                                    <input type="text" name="id" value="<%= r._id %>" hidden>
+                                                    <button class="btn btn-danger badge" type="submit"
+                                                        class="clean-link">delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
+                                        <% }) %>
                                     </tbody>
                                 </table>
                             </div>

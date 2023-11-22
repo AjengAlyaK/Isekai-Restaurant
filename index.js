@@ -15,7 +15,7 @@ const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
 const { addToCart, checkout, deleteCart } = require('./src/controller/cart');
-const { processOrder, deleteProcessOrder } = require('./src/controller/admin');
+const { processOrder, deleteProcessOrder, processReservation, deleteProcessR, updateStatusR, updateStatusO, admin, deleteProduct, adminProducts } = require('./src/controller/admin');
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -70,38 +70,15 @@ app.post('/checkout', checkout);
 app.get('/logout', logout);
 
 // admin
-app.get('/admin', async (req, res) => {
-    res.render('admin-index', {
-        title: 'FlavourSpark',
-        layout: 'layouts/admin-layout',
-    });
-});
+app.get('/admin', admin);
 app.get('/process-order', processOrder);
-app.get('/process-reservation', async (req, res) => {
-    res.render('process-reservation', {
-        title: 'FlavourSpark',
-        layout: 'layouts/admin-layout',
-    });
-});
+app.get('/process-reservation', processReservation);
 app.delete('/delete-process-order', deleteProcessOrder);
-app.put('/update-status-order', async (req, res) => {
-    try {
-        await Checkout.updateOne(
-            { _id: req.body._id},
-            {
-                $set: {
-                    status: req.body.status
-                }
-            }
-        ).then((result) =>{
-            // kirimkan flash message
-            // req.flash('msg', 'Data contact berhasil diubah!');
-            res.redirect('/process-order');
-        });
-    } catch (error) {
-        res.status(500).send({ error: error.message });
-    }
-});
+app.delete('/delete-process-reservation', deleteProcessR);
+app.put('/update-status-reservation', updateStatusR);     // suspicious
+app.put('/update-status-order', updateStatusO);
+app.get('/admin-products', adminProducts);
+app.delete('/delete-product', deleteProduct);
 
 app.get('/user', async (req, res) => {
     try {
