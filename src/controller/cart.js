@@ -21,6 +21,7 @@ const addToCart =  (req, res) => {
 };
 
 const checkout = async (req, res) => {
+    // good looking code :)
     try {
         if(!req.session.userId){
             throw new Error('user not authenticated');

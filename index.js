@@ -8,6 +8,30 @@ const Cart = require('./src/model/cart');
 const Checkout = require('./src/model/checkout');
 require('./src/utils/db');
 const cors = require('cors');
+// middleware
+// const multer = require('multer');
+// const upload= require('./src/middleware/upload');
+// second multer
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/image/product/thumb') 
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Handle multiple file uploads in a single request
+const multipleUpload = upload.fields([
+    { name: 'pict_product' },
+    { name: 'pict_thumb' }
+]);
+
+
 // controller
 const { signUp, signIn, profile, logout, home } = require('./src/controller/user');
 const { root, product, promo, cart, signUpPage, signInPage } = require('./src/controller/index');
@@ -15,7 +39,9 @@ const { reservation } = require('./src/controller/reservation');
 const { subscribe } = require('./src/controller/subscribe');
 const { allproducts, allpromo, mycart } = require('./src/controller/home');
 const { addToCart, checkout, deleteCart } = require('./src/controller/cart');
-const { processOrder, deleteProcessOrder, processReservation, deleteProcessR, updateStatusR, updateStatusO, admin, deleteProduct, adminProducts } = require('./src/controller/admin');
+const { processOrder, deleteProcessOrder, processReservation, deleteProcessR, updateStatusR, 
+    updateStatusO, admin, deleteProduct, adminProducts, updateProductI, addProduct } = require('./src/controller/admin');
+
 // make session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -79,6 +105,9 @@ app.put('/update-status-reservation', updateStatusR);     // suspicious
 app.put('/update-status-order', updateStatusO);
 app.get('/admin-products', adminProducts);
 app.delete('/delete-product', deleteProduct);
+// app.post('/update-product-information', upload.single('pict_thumb'), updateProductI);
+app.post('/update-product-information', multipleUpload, updateProductI);
+app.post('/add-product', multipleUpload ,addProduct);
 
 app.get('/user', async (req, res) => {
     try {

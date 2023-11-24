@@ -171,6 +171,101 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
+                            <!-- edit product -->
+                            <!-- Modal -->
+                            <div class="modal fade" id="add-product" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="/add-product" method="POST" enctype="multipart/form-data">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-4 offset-4">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="container mt-4">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Product Name</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- <input type="text" name="_id"  hidden> -->
+                                                            <input type="text" class="form-control form-control-sm" name="name_product" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Price</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control form-control-sm" name="price" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Category</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control form-control-sm" name="category" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Preview</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control form-control-sm" name="preview" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Description</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control form-control-sm" name="description" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Picture</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="file" class="form-control form-control-sm" name="pict_product">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-4">
+                                                            <p>Thumbnail</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="file" class="form-control form-control-sm" name="pict_thumb">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-auto">
+                                        <button href="#" class="mb-3 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#add-product"><i
+                                            class="fas fa-plus fa-sm text-white-50"></i> Add New Product</button>
+                                    </div>
+                                </div>
+                            </div>
                             <table class="table" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -190,7 +285,7 @@
                                                 <%= i %>
                                             </td>
                                             <td>
-                                                <a href="image/product/<%= p.pict_product %>"
+                                                <a href="image/product/thumb/<%= p.pict_product %>"
                                                     data-lightbox="<%= p.name_product %>"
                                                     data-title="<%= p.name_product %>">
                                                     <img src="image/product/thumb/<%= p.pict_thumb %>"
@@ -303,7 +398,7 @@
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form action="">
+                                                            <form action="/update-product-information" method="POST" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-4 offset-4">
@@ -316,6 +411,7 @@
                                                                                 <p>Product Name</p>
                                                                             </div>
                                                                             <div class="col-6">
+                                                                                <input type="text" name="_id" value="<%= p._id %>" hidden>
                                                                                 <input type="text" class="form-control form-control-sm" name="name_product" value="<%= p.name_product %>">
                                                                             </div>
                                                                         </div>
@@ -356,7 +452,7 @@
                                                                                 <p>Picture</p>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <input type="file" class="form-control form-control-sm" name="pict_product" value="<%= p.pict_product %>">
+                                                                                <input type="file" class="form-control form-control-sm" name="pict_product">
                                                                             </div>
                                                                         </div>
                                                                         <div class="row justify-content-center">
@@ -364,7 +460,7 @@
                                                                                 <p>Thumbnail</p>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <input type="file" class="form-control form-control-sm" name="pict_thumb" value="<%= p.pict_thumb %>">
+                                                                                <input type="file" class="form-control form-control-sm" name="pict_thumb">
                                                                             </div>
                                                                         </div>
                                                                     </div>

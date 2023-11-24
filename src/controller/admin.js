@@ -100,4 +100,68 @@ const adminProducts =  async (req, res) => {
         products
     });
 }
-module.exports = { processOrder, deleteProcessOrder, processReservation, deleteProcessR, updateStatusR, updateStatusO, admin, deleteProduct, adminProducts };
+
+const updateProductI = async(req, res, next) => {
+    try {
+        const filenames = Object.values(req.files).map(fileArray => fileArray[0].filename);
+        let updateProduct = {
+            name_product: req.body.name_product,
+            price: req.body.price,
+            category: req.body.category,
+            preview: req.body.preview,
+            description: req.body.description,
+            pict_product : filenames[0],
+            pict_thumb : filenames[1]
+        }
+        // console.log(req.file, req.body);
+        // if(req.file){
+        //     updateProduct.pict_product = filenames[0];
+        //     updateProduct.pict_thumb = filenames[1];
+        // }
+        await Product.updateOne(
+            { _id: req.body._id},
+            {
+                $set: updateProduct
+            }
+        ).then((result) =>{
+            // kirimkan flash message
+            // req.flash('msg', 'Data contact berhasil diubah!');
+            res.redirect('/admin-products');
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+    }
+}
+
+const addProduct =  async (req, res, next) => {
+    try {
+        const filenames = Object.values(req.files).map(fileArray => fileArray[0].filename);
+
+        let newProduct = {
+            name_product: req.body.name_product,
+            price: req.body.price,
+            category: req.body.category,
+            preview: req.body.preview,
+            description: req.body.description,
+            pict_product: filenames[0],
+            pict_thumb: filenames[1],
+        }
+        // console.log(req.body);
+        // if(req.file){
+        //     updateProduct.pict_thumb = req.file.filename
+        // }
+        await Product.create(newProduct)
+        .then((result) =>{
+            // kirimkan flash message
+            // req.flash('msg', 'Data contact berhasil diubah!');
+            res.redirect('/admin-products');
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
+    }
+}
+
+
+module.exports = { processOrder, deleteProcessOrder, processReservation, deleteProcessR, updateStatusR, updateStatusO, admin, deleteProduct, adminProducts, updateProductI, addProduct  };

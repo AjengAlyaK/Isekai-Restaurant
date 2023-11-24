@@ -8,14 +8,12 @@ const Product = mongoose.model('Product', {
     },
     pict_product: {
         type: String,
-        required: true
     },
     pict_thumb: {
         type: String,
-        required: true
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     preview: {
