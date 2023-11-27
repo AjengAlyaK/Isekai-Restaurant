@@ -4,10 +4,16 @@ body{
 
 .main-color
 {
-    background-color: #592693 !important;
-    /* background-color: #4a1985 !important; */
+    /* background-color: #592693 !important; */
+    /* background-color: #72cabc  !important; */
+    /* background-color: #95daeb  !important; */
+    background-color: #5b5cac !important;
+    /* for banner : #d1e3ec */
+    /* for button : #852526  */
+
 }
 
+/* bg minor */
 .banner
 {
     height: 80vh;
