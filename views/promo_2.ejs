@@ -221,10 +221,10 @@
         <p class="text-center text-light">Untuk informasi tentang promo</p>
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <form action="/subscribe" method="post">
-                <div class="input-group mb-3">
-                    <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group custom-input-group mb-3">
+                    <input name="subscribtion" type="text" class="form-control form-control-lg custom-input" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
                     <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
-                    <button class="btn btn-warning text-light" type="submit" id="button-addon2">Button</button>
+                    <button class="btn custom_red-btn mr-3 text-light btn-lg custom-button" type="submit" id="button-addon2">Button</button>
                 </div>
             </form>
         </div>

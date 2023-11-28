@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
     <link rel="stylesheet" href="bootstrap-5.0.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- lightbox -->
     <link rel="stylesheet" href="dist/css/lightbox.min.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+        .custom-input-group {
+            display: flex;
+        }
+
+        .custom-input {
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        .custom-button {
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+        .bg-footer {
+            background: #f0eff5;
+        }
+    </style>
 </head>
+
 <body>
     <%- include('nav_2') %>
-    <%- body %>
-    <%- include('footer') %>
-    <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
-    <!-- lightbox -->
-    <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+        <%- body %>
+            <%- include('footer') %>
+                <script src="bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
+                <!-- lightbox -->
+                <script src="dist/js/lightbox-plus-jquery.min.js"></script>
 </body>
+
 </html>

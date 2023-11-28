@@ -1,5 +1,5 @@
 <!-- banner -->
-<div class="container-fluid banner d-flex align-items-center">
+<!-- <div class="container-fluid banner d-flex align-items-center">
     <div class="container">
         <h1 class="text-light text-center display-5 mb-3">Selamat Datang di Kafe Saya</h1>
         <h2 class="text-light text-center mb-4">Lagi Mau Makan Apa ?</h2>
@@ -16,7 +16,49 @@
         </div>
 
     </div>
-</div>
+</div> -->
+<section class=" slider_section position-relative">
+    <div id="carouselExampleControls" class="carousel slide pb-5" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="slider_item-box">
+                    <div class="slider_item-container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="slider_item-detail">
+                                        <div>
+                                            <h1>
+                                                Welcome to <br />
+                                                Our Restaurant
+                                            </h1>
+                                            <p>
+                                                There are many variations of passages of Lorem
+                                                Ipsum available
+                                            </p>
+                                            <div class="d-flex">
+                                                <a href="/allproducts" class="btn rounded-pill text-white custom_red-btn mr-3 btn-lg">
+                                                    Shop Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="slider_img-box">
+                                        <div>
+                                            <img src="image/brand-new.png" alt="" class="" style="width: 370px" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- promo -->
 <div class="container-fluid py-5">
@@ -56,7 +98,7 @@
             </div>
 
             <div class="mt-5  d-flex justify-content-center">
-                <a href="/allpromo" class="btn btn-warning text-light btn-lg">Lihat Semua Promo</a>
+                <a href="/allpromo" class="btn btn-warning rounded-pill custom_red-btn mr-3 text-light btn-lg">See All Promo</a>
             </div>
         </div>
         
@@ -168,7 +210,7 @@
         </div>
 
         <div class="mt-5 d-flex justify-content-center">
-            <a href="/allproducts" class="btn btn-warning btn-lg text-light">Lihat Lainnya</a>
+            <a href="/allproducts" class="btn rounded-pill btn-lg text-light custom_red-btn mr-3">Lihat Lainnya</a>
         </div>
     </div>
 </div>
@@ -273,17 +315,17 @@
         <form method="POST" action="/reservation" class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-5">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input name="name" type="text" class="form-control" id="nama" autocomplete="off" required>
+                <input name="name" type="text" class="form-control form-control-lg" id="nama" autocomplete="off" required>
             </div>
 
             <div class="mb-3">
                 <label for="nokontak" class="form-label">No Kontak</label>
-                <input name="contactNumber" type="text" class="form-control" id="nokontak"autocomplete="off" required>
+                <input name="contactNumber" type="text" class="form-control form-control-lg" id="nokontak"autocomplete="off" required>
             </div>
 
             <div class="mb-3">
                 <label for="jumlahmeja" class="form-label">Jumlah Meja</label>
-                <input name="tablesAmount" type="text" class="form-control" id="jumlahmeja" autocomplete="off" required>
+                <input name="tablesAmount" type="text" class="form-control form-control-lg" id="jumlahmeja" autocomplete="off" required>
             </div>
 
             <div class="mb-3">
@@ -291,7 +333,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-warning text-light w-100">Reservasi</button>
+                <button type="submit" class="btn rounded-pill custom_red-btn mr-3 text-light w-100 btn-lg mt-2">Reservasi</button>
             </div>
 
         </form>
@@ -321,10 +363,10 @@
         <p class="text-center text-light">Untuk informasi tentang promo</p>
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <form action="/subscribe" method="post">
-                <div class="input-group mb-3">
-                    <input name="subscribtion" type="text" class="form-control" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
+                <div class="input-group custom-input-group mb-3">
+                    <input name="subscribtion" type="text" class="form-control form-control-lg custom-input" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
                     <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
-                    <button class="btn btn-warning text-light" type="submit" id="button-addon2">Button</button>
+                    <button class="btn custom_red-btn mr-3 text-light btn-lg custom-button" type="submit" id="button-addon2">Button</button>
                 </div>
             </form>
     </div>
