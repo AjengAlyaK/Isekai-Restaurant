@@ -55,6 +55,11 @@ body {
     min-height: 500px;
 }
 
+/* form */
+.custom-form {
+    border-radius: 25px;
+}
+
 @media (max-width: 991.98px) {
     .half .bg {
         height: 200px;
@@ -123,6 +128,14 @@ body {
     border-radius: 0 0 25px 25px;
 }
 
+#editProfile {
+    border-radius: 25px 25px 0 0;
+}
+
+#logOut {
+    border-radius: 0 0 25px 25px;
+}
+
 .active-category {
     background-color: #852526;
     color: white;
@@ -132,7 +145,21 @@ body {
     border: 1px solid #852526; 
 }
 
+.page-item {
+    border: 1px solid #852526;
+}
+
 .list-product .list-group-item:hover {
+    background-color: #852526;
+    color: white;
+}
+
+.list-profile .list-group-item:hover {
+    background-color: #852526;
+    color: white;
+}
+
+.page-item .page-link:hover {
     background-color: #852526;
     color: white;
 }
@@ -202,7 +229,7 @@ body {
 }
 
 .custom_red-btn:hover {
-    border: 1px solid #852526;
+    border: 1px solid #641c1e;
     color: white;
     background-color: #641c1e;
 }
@@ -214,6 +241,12 @@ body {
 }
 
 .custom_red-btn_outline:hover {
+    border: 1px solid #852526;
+    color: white;
+    background-color: #852526;
+}
+
+.active-custom {
     border: 1px solid #852526;
     color: white;
     background-color: #852526;
