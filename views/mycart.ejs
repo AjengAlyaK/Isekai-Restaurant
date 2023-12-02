@@ -1,17 +1,17 @@
-<div class="container-fluid py-5">
+<div class="container-fluid pb-5">
     <div class="container">
-        <h2 class="text-center my-5">Keranjang Belanja</h2>
+        <h2 class="text-center my-5">My Cart</h2>
 
         <div class="table-responsive" id="mycart">
             <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Pesanan</th>
-                        <th>Harga</th>
+                        <th>Order</th>
+                        <th>Price</th>
                         <!-- <th>Jumlah</th>
                         <th>Total</th> -->
-                        <th>Ubah</th>
+                        <th>Change</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -136,7 +136,7 @@
 <!-- subscribe -->
 <div class="container-fluid py-5 content-subscribe">
     <div class="container">
-        <h5 class="text-center text-light mb-4">Temui Kami</h5>
+        <h5 class="text-center text-light mb-4">Find Us</h5>
         <div class="row justify-content-center">
             <div class="col-sm-1 d-flex justify-content-center mb-2">
                 <i class="bi bi-facebook fs-4 text-white"></i>
@@ -153,13 +153,13 @@
         </div>
 
         <h5 class="text-center text-light mt-5 mb-0">Subscribe</h5>
-        <p class="text-center text-light">Untuk informasi tentang promo</p>
+        <p class="text-center text-light">Get information about special deal</p>
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <form action="/subscribe" method="post">
                 <div class="input-group custom-input-group mb-3">
-                    <input name="subscribtion" type="text" class="form-control form-control-lg custom-input" placeholder="ketikkan email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
+                    <input name="subscribtion" type="text" class="form-control form-control-lg custom-input" placeholder="write your email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
                     <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
-                    <button class="btn custom_red-btn mr-3 text-light btn-lg custom-button" type="submit" id="button-addon2">Button</button>
+                    <button class="btn custom_red-btn mr-3 text-light btn-lg custom-button" type="submit" id="button-addon2">Submit</button>
                 </div>
             </form>
         </div>

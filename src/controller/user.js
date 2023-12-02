@@ -6,7 +6,7 @@ const home = async (req, res) => {
         const userId = req.session.userId;
         const user = await User.findOne({ _id: userId });
         res.render('home',{
-            title: 'Kafe Saya | Home',
+            title: 'FlavourSpark | Home',
             layout: 'layouts/main-home',
             user,
         });
@@ -51,7 +51,7 @@ const profile = async (req, res) => {
         console.log(checkout);
         // res.send(user.username);
         res.render('profile',{
-            title: 'Kafe Saya | Profile',
+            title: 'FlavourSpark | Profile',
             layout: 'layouts/main-home',
             user,
             checkout

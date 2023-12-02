@@ -9,7 +9,7 @@ const allproducts = async (req, res) => {
             const user = await User.findOne({ _id: userId });
             const products = await Products.find();
             res.render('product_2',{
-                title: 'Kafe Saya | Products',
+                title: 'FlavourSpark | Products',
                 layout: 'layouts/main-home',
                 user,
                 products
@@ -31,7 +31,7 @@ const allpromo = async (req, res) => {
         const userId = req.session.userId;
         const user = await User.findOne({ _id: userId });
         res.render('promo_2',{
-            title: 'Kafe Saya | Promo',
+            title: 'FlavourSpark | Promo',
             layout: 'layouts/main-home',
             user,
         });
@@ -45,7 +45,7 @@ const mycart = async (req, res) => {
         const mycart = await Cart.find({ buyer: user.username });
         // console.log(mycart);
         res.render('mycart',{
-            title: 'Kafe Saya | Cart',
+            title: 'FlavourSpark | Cart',
             layout: 'layouts/main-home',
             user,
             mycart

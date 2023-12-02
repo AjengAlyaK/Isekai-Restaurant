@@ -67,7 +67,7 @@ body {
 }
 
 .half .contents {
-    background: #dee8ff;
+    background: #d1e3ec;
 }
 
 .half .contents,
@@ -137,6 +137,11 @@ body {
 }
 
 .active-category {
+    background-color: #852526;
+    color: white;
+}
+
+.active-profile {
     background-color: #852526;
     color: white;
 }
@@ -257,6 +262,10 @@ body {
     color: #852526;
 }
 
+.text-purple {
+    color: #5b5cac;
+}
+
 .custom_heading {
     text-align: center;
     font-weight: bold;
@@ -266,6 +275,10 @@ body {
     text-align: center;
 }
 
+/* nav */
+.active-nav{
+    color: white;
+}
 
 /*header section*/
 .hero_area {
@@ -297,6 +310,7 @@ body {
     text-align: center
 }
 
+s
 a,
 a:hover,
 a:focus {

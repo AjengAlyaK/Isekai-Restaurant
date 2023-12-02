@@ -2,15 +2,14 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #592693; background-size: cover;"
+    <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #5b5cac; background-size: cover;"
         id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Admin</div>
         </a>
 
         <!-- Divider -->
@@ -42,7 +41,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" style="background: #d1e3ec;" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
@@ -61,7 +60,7 @@
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                             aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn custom_red-btn text-white" type="button">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -228,14 +227,14 @@
                                                                 <div class="modal-body">
                                                                     <div class="form-floating mb-3">
                                                                         <input type="text" name="_id" value="<%= c._id %>" hidden>
-                                                                        <input type="text" name="status" class="form-control" id="floatingInput" value="<%= c.status %>">
+                                                                        <input type="text" name="status" class="form-control" id="floatingInput" value="<%= c.status %>" autocomplete="off">
                                                                         <label for="floatingInput">Status Order</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                    <button type="submit" class="btn custom_red-btn text-white">Save changes</button>
                                                                 </div>
                                                             </form>
                                                         </div>

@@ -1,4 +1,6 @@
 const User = require('../model/user');
+const Product = require('../model/product');
+
 require('../utils/db');
 
 const root = (req, res) => {
@@ -8,10 +10,12 @@ const root = (req, res) => {
     });
 }
 
-const product = (req, res) => {
+const product = async (req, res) => {
+    const products = await Product.find();
     res.render('product', {
         title: 'Kafe Saya | Produk',
         layout: 'layouts/main-layout',
+        products
     });
 }
 

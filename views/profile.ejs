@@ -1,4 +1,4 @@
-<div class="container-fluid py-5">
+<div class="container-fluid pb-5">
     <div class="container">
         <div class="row">
             <div class="col-5 mt-5">
@@ -102,7 +102,7 @@
                 <div class="card border-0">
                         <ul class="list-group">
                             <a href="" type="button" class="list-profile" id="editProfile"><li class="list-group-item">Edit Profile</li></a>
-                            <a href="" type="button" class="list-profile"><li class="list-group-item">Order Status</li></a>
+                            <a href="" type="button" class="list-profile"><li class="list-group-item active-profile">Order Status</li></a>
                             <a href="" type="button" class="list-profile"><li class="list-group-item">Reservation</li></a>
                             <a href="" type="button" class="list-profile"><li class="list-group-item">Order History</li></a>
                             <a href="" type="button" class="list-profile"><li class="list-group-item">Favorite</li></a>
@@ -113,5 +113,36 @@
         </div>
     </div>
 </div>
+<!-- subscribe -->
+<div class="container-fluid py-5 content-subscribe">
+    <div class="container">
+        <h5 class="text-center text-light mb-4">Find Us</h5>
+        <div class="row justify-content-center">
+            <div class="col-sm-1 d-flex justify-content-center mb-2">
+                <i class="bi bi-facebook fs-4 text-white"></i>
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center mb-2">
+                <i class="bi bi-instagram fs-4 text-white"></i>
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center mb-2">
+                <i class="bi bi-twitter fs-4 text-white"></i>
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center mb-2">
+                <i class="bi bi-youtube fs-4 text-white"></i>
+            </div>
+        </div>
 
+        <h5 class="text-center text-light mt-5 mb-0">Subscribe</h5>
+        <p class="text-center text-light">Get information about special deal</p>
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <form action="/subscribe" method="post">
+                <div class="input-group custom-input-group mb-3">
+                    <input name="subscribtion" type="text" class="form-control form-control-lg custom-input" placeholder="write your email" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
+                    <input name="username" value="<%= user.username %>" type="text" class="form-control" autocomplete="off" hidden>
+                    <button class="btn custom_red-btn mr-3 text-light btn-lg custom-button" type="submit" id="button-addon2">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- <img src="/image/product/brownies.jpg" alt=""> -->
