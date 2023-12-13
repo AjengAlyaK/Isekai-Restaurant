@@ -109,6 +109,7 @@ app.delete('/delete-product', deleteProduct);
 app.post('/update-product-information', multipleUpload, updateProductI);
 app.post('/add-product', multipleUpload ,addProduct);
 
+
 app.get('/user', async (req, res) => {
     try {
         const users = await User.find();
