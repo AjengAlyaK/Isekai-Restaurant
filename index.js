@@ -31,6 +31,14 @@ const multipleUpload = upload.fields([
     { name: 'pict_thumb' }
 ]);
 
+// Midtrans
+const midtransClient = require('midtrans-client');
+// Create Core API instance
+let coreApi = new midtransClient.CoreApi({
+        isProduction : false,
+        serverKey : 'SB-Mid-server-Pvz5-cKpyT2Gu9Ea93hrXpOj',
+        clientKey : 'SB-Mid-client-Ivk4fBHYBOQ95fTx'
+    });
 
 // controller
 const { signUp, signIn, profile, logout, home } = require('./src/controller/user');

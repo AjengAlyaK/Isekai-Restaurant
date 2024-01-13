@@ -47,8 +47,13 @@ const profile = async (req, res) => {
         const userId = req.session.userId;
         const user = await User.findOne({ _id: userId });
         const buyer = user.username;
-        const checkout = await Checkout.findOne({ username: buyer });
-        console.log(checkout);
+        let checkout = await Checkout.findOne({ username: buyer });
+        if (!checkout) {
+            checkout = {
+                _id: " -",
+                status: "no order yet"
+            };
+        }
         // res.send(user.username);
         res.render('profile',{
             title: 'FlavourSpark | Profile',

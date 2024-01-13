@@ -43,7 +43,7 @@ const deleteProcessR = (req, res) => {
 
 const updateStatusR = async (req, res) => {
     try {
-        await Reservation.updateOne(
+        await UserReservation.updateOne(
             { _id: req.body._id },
             {
                 $set: {
@@ -62,7 +62,7 @@ const updateStatusR = async (req, res) => {
 
 const updateStatusO = async (req, res) => {
     try {
-        await Checkout.updateOne(
+        await CheckoutUser.updateOne(
             { _id: req.body._id },
             {
                 $set: {

@@ -41,12 +41,17 @@
                         <!-- Order Status -->
                         <p>your order is</p>
                         <h3 class="fw-bold"><%= checkout.status %></h3>
-                        <p class="fw-bold">as on 2 Nov 2023, Thursday</p>
-                        <p>Have you received your food ? </p>
-                        <div class="mb-4">
-                            <a type="button" class="btn rounded-pill custom_red-btn_outline">No</a>
-                            <a type="button" class="btn rounded-pill custom_red-btn text-white">Yes</a>
-                        </div>
+                        <% if (checkout.status == "no order yet") { %>
+                            <p class="fw-bold">-</p>
+                            <p> - </p>
+                        <% } else { %>
+                            <p class="fw-bold">as on 2 Nov 2023, Thursday</p>
+                            <p>Have you received your food ? </p>
+                            <div class="mb-4">
+                                <a type="button" class="btn rounded-pill custom_red-btn_outline">No</a>
+                                <a type="button" class="btn rounded-pill custom_red-btn text-white">Yes</a>
+                            </div>
+                        <% } %>
                         <hr>
                         <!-- Feedback -->
                         <p class="m-0">How was your delivery food experience ?</p>
