@@ -1,9 +1,6 @@
 <a name="readme-top"></a>
 <p align="center">
-  <video width="100" style="vertical-align: middle;" controls>
-    <source src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/straight-from-isekai.mp4?alt=media&token=5dccce88-d046-4bd4-af4f-34d2b0899a08" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <video src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/straight-from-isekai.mp4?alt=media&token=5dccce88-d046-4bd4-af4f-34d2b0899a08" width="150" height="auto" controls></video>
 </p>
 
 # 🥘 Isekai Restaurant
