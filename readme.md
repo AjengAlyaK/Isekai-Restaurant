@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 <p align="center">
-  <video src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/straight-from-isekai.mp4?alt=media&token=5dccce88-d046-4bd4-af4f-34d2b0899a08" width="150" height="auto" controls></video>
+  <img src="https://i.pinimg.com/originals/1c/70/e1/1c70e1cc178b35f2662eee258a0d8132.png" alt="Logo" width="100" style="vertical-align: middle;">
 </p>
 
 # 🥘 Isekai Restaurant
