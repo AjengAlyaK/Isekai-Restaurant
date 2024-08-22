@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 <p align="center">
-  <img src="https://i.pinimg.com/originals/1c/70/e1/1c70e1cc178b35f2662eee258a0d8132.png" alt="Logo" width="200" style="vertical-align: middle;">
+  <img src="https://i.pinimg.com/originals/1c/70/e1/1c70e1cc178b35f2662eee258a0d8132.png" alt="Logo" width="200" style="vertical-align: middle; border-radius: 10px;">
 </p>
 
 # 🥘 Isekai Restaurant
