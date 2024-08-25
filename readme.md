@@ -13,6 +13,7 @@ Isekai Restaurant is a restaurant ordering system made using Express, EJS, Boots
 <details>
   
   <summary>Details</summary>
+  
   - Express Js
   - Ejs
   - Bootstrap
